@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import loginAnimation from "../../../assets/login-animation-lottie.json"; // adjust path as needed
+import loginAnimation from "../assets/login-animation-lottie.json"; // adjust path as needed
 
 const Login = () => {
   const [hasError, setHasError] = useState(false);
@@ -85,9 +85,6 @@ const Login = () => {
           </button>
         </form>
 
-        <p className="mt-6 text-sm text-center text-gray-500">
-          © 2025 FactoryPulse. All rights reserved.
-        </p>
       </motion.div>
     </div>
   );
