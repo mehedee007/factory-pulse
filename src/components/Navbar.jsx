@@ -26,12 +26,12 @@ const Navbar = () => {
                     <Link to="/">FactoryPulse</Link>
                 </h1>
                 <nav className="space-x-4 hidden md:flex">
-                    <a href="#features" className="text-gray-600 hover:text-indigo-600">
+                    {/* <a href="#features" className="text-gray-600 hover:text-indigo-600">
                         Features
                     </a>
                     <a href="#contact" className="text-gray-600 hover:text-indigo-600">
                         Register
-                    </a>
+                    </a> */}
                     <Link to="/auth/login" className="text-gray-600 font-semibold hover:underline">
                         Login
                     </Link>

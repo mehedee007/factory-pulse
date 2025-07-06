@@ -2,29 +2,54 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import loginAnimation from "../assets/login-animation-lottie.json"; // adjust path as needed
-
+import { login as loginApi } from '../api/authApi';
+import { useAuth } from '../hooks/useAuth';
+import { jwtDecode } from "jwt-decode";
 const Login = () => {
+
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const { login } = useAuth();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const [hasError, setHasError] = useState(false);
   const [shakeKey, setShakeKey] = useState(0);
 
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Dummy validation
     const isValid = false;
 
-    if (!isValid) {
-      setHasError(true);
-      setShakeKey(prev => prev + 1); // re-trigger animation
-    } else {
-      setHasError(false);
-      // Redirect to dashboard, etc.
+    // if (!isValid) {
+    //   setHasError(true);
+    //   setShakeKey(prev => prev + 1); // re-trigger animation
+    // } else {
+    //   setHasError(false);
+    //   // Redirect to dashboard, etc.
+    // }
+    try {
+      console.log(formData);
+      const { jwtToken } = await loginApi(formData);
+      login(jwtToken);
+      const decode = jwtDecode(jwtToken);
+      console.log(decode);
+      // Navigate to dashboard, etc.
+    } catch (err) {
+      console.error(err);
+      alert('Invalid credentials');
     }
   };
 
+
+
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-br from-indigo-100 to-indigo-300">
-      
+
       {/* Left: Lottie Animation */}
       <div className="hidden md:flex w-full md:w-1/2 items-center justify-center p-4">
         <Lottie
@@ -58,13 +83,16 @@ const Login = () => {
           </div>
         )}
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-1">Username</label>
             <input
               type="text"
+              name="UserName"
+              value={formData.UserName}
+              onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Enter your username"
+              placeholder="Enter your UserName"
             />
           </div>
 
@@ -72,6 +100,9 @@ const Login = () => {
             <label className="block text-gray-700 font-medium mb-1">Password</label>
             <input
               type="password"
+              name="Password"
+              value={formData.Password}
+              onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
               placeholder="••••••••"
             />
