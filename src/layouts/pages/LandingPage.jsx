@@ -1,19 +1,13 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const LandingPage = () => {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <div className="bg-gray-100 text-gray-800">
-      {/* Header */}
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-indigo-600">FactoryPulse</h1>
-          <nav className="space-x-4 hidden md:flex">
-            <a href="#features" className="text-gray-600 hover:text-indigo-600">Features</a>
-            <a href="#contact" className="text-gray-600 hover:text-indigo-600">Contact</a>
-            <a href="/login" className="text-indigo-600 font-semibold hover:underline">Login</a>
-          </nav>
-        </div>
-      </header>
+      {/*Navigation Section*/}
+      <Navbar></Navbar>
 
       {/* Hero Section */}
       <section className="bg-indigo-50 py-20">
@@ -23,7 +17,7 @@ const LandingPage = () => {
               One Place to Manage Your Entire Production
             </h2>
             <p className="text-lg mb-6 text-gray-700">
-              Streamline all your production sections — planning, materials, quality control, and dispatch — under one powerful system.
+              Streamline all your production sections planning, quality control, and dispatch under one powerful system.
             </p>
             <a
               href="/register"
@@ -34,7 +28,7 @@ const LandingPage = () => {
           </div>
           <div className="md:w-1/2">
             <img
-              src="https://i.ibb.co/Gf52C2Nq/9859.jpg"
+              src="https://i.ibb.co/HDCZsZDj/production-bg-02.gif"
               alt="Dashboard"
               className="rounded-xl shadow-md"
             />
@@ -45,7 +39,7 @@ const LandingPage = () => {
       {/* Features Section */}
       <section id="features" className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold text-indigo-700 mb-12">Why Choose FactoryPulse?</h3>
+          <h3 className="text-3xl font-bold text-indigo-700 mb-12">Features</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {[
               {
@@ -75,11 +69,12 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Contact / CTA Section */}
+      {/* Current Implementations */}
       <section id="contact" className="py-20 bg-indigo-600 text-white text-center">
         <div className="max-w-6xl mx-auto px-4">
-          <h3 className="text-3xl font-bold mb-4">Ready to Power Up Your Production?</h3>
+          <h3 className="text-3xl font-bold mb-4">Production Sections</h3>
           <p className="mb-6 text-lg">Start your free trial or talk to our team today.</p>
+
           <a
             href="/register"
             className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
@@ -91,7 +86,7 @@ const LandingPage = () => {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-6 text-center text-sm">
-        © 2025 FactoryPulse. All rights reserved.
+        © {year} Naturub. All rights reserved.
       </footer>
     </div>
   );
