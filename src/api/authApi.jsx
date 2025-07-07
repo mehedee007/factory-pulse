@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8880/api';
+const BASE_URL = 'http://192.168.1.253/NaturubWebAPI/api';
 
 export const login = async (credentials) => {
   const response = await axios.post(`${BASE_URL}/login/IsValidUserWithJWTToken`, credentials);
