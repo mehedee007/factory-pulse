@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const {user, logout} = useAuth();
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
@@ -23,7 +24,7 @@ const Navbar = () => {
         >
             <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
                 <h1 className="text-2xl font-bold text-indigo-600">
-                    <Link to="/">FactoryPulse</Link>
+                    <Link to={user ? "/dashboard" : "/"}>FactoryPulse</Link>
                 </h1>
                 <nav className="space-x-4 hidden md:flex">
                     {/* <a href="#features" className="text-gray-600 hover:text-indigo-600">
@@ -32,9 +33,12 @@ const Navbar = () => {
                     <a href="#contact" className="text-gray-600 hover:text-indigo-600">
                         Register
                     </a> */}
-                    <Link to="/auth/login" className="text-gray-600 font-semibold hover:underline">
+                    {
+                        user ? <Link to='/' onClick={logout}>Log Out</Link>:  <Link to="/auth/login" className="text-gray-600 font-semibold hover:underline">
                         Login
                     </Link>
+                    }
+                  
                 </nav>
             </div>
         </header>

@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
-import PageTransition from "../components/PageTransition";
+import PageTransition from "../../components/PageTransition";
 
 const Landing = () => {
 
